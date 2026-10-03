@@ -28,6 +28,7 @@
             --font-family: 'Montserrat', sans-serif;
             --transition: all 0.3s ease;
             --danger-red: #ff4d4d;
+            --whatsapp-green: #25d366;
         }
 
         html { scroll-behavior: smooth; }
@@ -72,7 +73,7 @@
         .navbar {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         .navbar a {
@@ -126,7 +127,7 @@
         /* HERO / BANNER SECTION */
         .hero {
             position: relative;
-            min-height: 65vh;
+            min-height: 60vh;
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -164,9 +165,7 @@
             margin-bottom: 1.5rem;
         }
 
-        .badge:empty {
-            display: none !important;
-        }
+        .badge:empty { display: none !important; }
 
         .hero h1 {
             font-size: 3rem;
@@ -176,9 +175,7 @@
             text-transform: uppercase;
         }
 
-        .hero h1:empty {
-            display: none !important;
-        }
+        .hero h1:empty { display: none !important; }
 
         .hero p {
             font-size: 1.1rem;
@@ -186,9 +183,7 @@
             margin-bottom: 2rem;
         }
 
-        .hero p:empty {
-            display: none !important;
-        }
+        .hero p:empty { display: none !important; }
 
         .btn-primary {
             background-color: var(--primary-pink);
@@ -202,9 +197,7 @@
             transition: var(--transition);
         }
 
-        .btn-primary:empty {
-            display: none !important;
-        }
+        .btn-primary:empty { display: none !important; }
 
         .btn-primary:hover {
             background-color: var(--primary-hover);
@@ -230,7 +223,6 @@
         }
 
         .section-title h2 span { color: var(--primary-pink); }
-
         .section-title p { color: var(--text-muted); }
 
         .products-grid {
@@ -330,6 +322,15 @@
 
         .btn-add-cart:hover { background-color: var(--primary-hover); }
 
+        .btn-whatsapp-order {
+            background-color: var(--whatsapp-green) !important;
+            color: #fff !important;
+        }
+
+        .btn-whatsapp-order:hover {
+            background-color: #1ebc57 !important;
+        }
+
         .admin-action-btns {
             display: flex;
             gap: 0.5rem;
@@ -364,16 +365,16 @@
         .cart-sidebar {
             position: fixed;
             top: 0;
-            right: -450px;
+            right: -480px;
             width: 100%;
-            max-width: 450px;
+            max-width: 480px;
             height: 100%;
             background-color: var(--card-bg);
             z-index: 1002;
             transition: right 0.4s ease;
             display: flex;
             flex-direction: column;
-            padding: 2rem;
+            padding: 1.8rem;
             box-shadow: -5px 0 25px rgba(0,0,0,0.8);
             border-left: 1px solid var(--primary-pink);
         }
@@ -416,7 +417,6 @@
         }
 
         .cart-item-details h4 { font-size: 0.95rem; }
-
         .cart-item-details p {
             font-size: 0.8rem;
             color: var(--text-muted);
@@ -431,7 +431,7 @@
             gap: 0.8rem;
         }
 
-        .cart-checkout-form input {
+        .cart-checkout-form input, .cart-checkout-form select {
             width: 100%;
             background: var(--input-bg);
             border: 1px solid rgba(244, 172, 183, 0.3);
@@ -439,6 +439,16 @@
             padding: 0.6rem;
             border-radius: 4px;
             outline: none;
+            font-family: var(--font-family);
+        }
+
+        .shipping-info-box {
+            background-color: rgba(244, 172, 183, 0.1);
+            border: 1px solid rgba(244, 172, 183, 0.3);
+            padding: 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
 
         .cart-total {
@@ -470,7 +480,7 @@
             border-radius: 8px;
             padding: 2rem;
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
@@ -530,6 +540,7 @@
             font-weight: bold;
             font-size: 0.85rem;
             border-radius: 4px;
+            white-space: nowrap;
         }
 
         .tab-btn.active {
@@ -574,7 +585,7 @@
         </div>
     </header>
 
-    <!-- Banner Principal (Sin textos fijos por defecto) -->
+    <!-- Banner Principal -->
     <section id="inicio" class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -610,13 +621,31 @@
         </div>
 
         <div class="cart-checkout-form">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cart-total-val">$0</span>
+            <div class="shipping-info-box">
+                <strong style="color:var(--primary-pink);">Zonas de Envío:</strong> <span id="checkout-shipping-zones">Cualquier zona configurada</span><br>
+                <strong style="color:var(--primary-pink);">Costo de Envío:</strong> <span id="checkout-shipping-cost">Gratis</span>
             </div>
-            <input type="text" id="cust-name" placeholder="Nombre Completo" required>
-            <input type="text" id="cust-address" placeholder="Dirección de Envío / Localidad" required>
-            <button class="btn-add-cart" onclick="processOrder()">Confirmar y Enviar Pedido</button>
+
+            <input type="text" id="cust-name" placeholder="Tu Nombre Completo" required>
+            <input type="tel" id="cust-phone" placeholder="Tu Teléfono / WhatsApp (Ej: +54 9 11...)" required>
+            <input type="text" id="cust-address" placeholder="Dirección / Ciudad / Localidad" required>
+            
+            <div class="cart-total">
+                <span>Subtotal Productos:</span>
+                <span id="cart-subtotal-val">$0</span>
+            </div>
+            <div class="cart-total" style="font-size: 0.95rem; color: var(--text-muted);">
+                <span>Costo Envío:</span>
+                <span id="cart-shipping-val">$0</span>
+            </div>
+            <div class="cart-total" style="border-top: 1px solid rgba(244,172,183,0.3); padding-top: 0.4rem; margin-top: 0.2rem;">
+                <span>TOTAL COMISIONABLE:</span>
+                <span id="cart-total-val" style="color:#25d366;">$0</span>
+            </div>
+
+            <button class="btn-add-cart btn-whatsapp-order" onclick="processOrderWhatsApp()">
+                📲 Confirmar y Enviar Pedido por WhatsApp
+            </button>
         </div>
     </div>
 
@@ -642,13 +671,14 @@
             </div>
 
             <div class="admin-tabs">
-                <button class="tab-btn active" onclick="switchTab(event, 'tab-brand')">🏷️ Nombre / Marca</button>
+                <button class="tab-btn active" onclick="switchTab(event, 'tab-brand')">🏷️️ Marca / Nombre</button>
                 <button class="tab-btn" onclick="switchTab(event, 'tab-hero')">🖼️ Banner / Textos</button>
                 <button class="tab-btn" onclick="switchTab(event, 'tab-products')">🛍️ Productos</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-shipping')">🚚 Envíos & Contacto</button>
                 <button class="tab-btn" onclick="switchTab(event, 'tab-security')">🔑 Clave</button>
             </div>
 
-            <!-- Tab 1: Editar Nombre de Marca -->
+            <!-- Tab 1: Marca -->
             <div id="tab-brand" class="tab-content active">
                 <div class="form-group">
                     <label>Texto Principal del Logo (Ejemplo: LM):</label>
@@ -661,7 +691,7 @@
                 <button class="btn-add-cart" onclick="saveBrandSettings()">Guardar Marca</button>
             </div>
 
-            <!-- Tab 2: Editar Textos del Banner y Encabezados -->
+            <!-- Tab 2: Textos del Banner -->
             <div id="tab-hero" class="tab-content">
                 <div class="form-group">
                     <label>Etiqueta Superior (Badge de portada - dejar vacío si no querés nada):</label>
@@ -696,7 +726,7 @@
                 <button class="btn-add-cart" onclick="saveHeroSettings()">Guardar Textos y Banner</button>
             </div>
 
-            <!-- Tab 3: Cargar y Modificar Productos con Fotos -->
+            <!-- Tab 3: Productos -->
             <div id="tab-products" class="tab-content">
                 <h4 style="margin-bottom: 1rem; color: var(--primary-pink);" id="prod-form-title">Cargar Producto</h4>
                 <input type="hidden" id="prod-edit-id" value="">
@@ -728,7 +758,25 @@
                 <button class="btn-add-cart" id="btn-cancel-prod" style="background:#444; color:#fff; margin-top:0.5rem; display:none;" onclick="resetProdForm()">Cancelar Edición</button>
             </div>
 
-            <!-- Tab 4: Seguridad / Cambiar Clave -->
+            <!-- Tab 4: Envíos y Notificación a Celular -->
+            <div id="tab-shipping" class="tab-content">
+                <div class="form-group">
+                    <label>Tu número de WhatsApp para recibir pedidos (con código de país sin +):</label>
+                    <input type="text" id="admin-whatsapp-num" placeholder="Ejemplo: 5491123456789">
+                    <small style="color:var(--text-muted)">A este número te llegarán los carritos de las compras por mensaje directo.</small>
+                </div>
+                <div class="form-group">
+                    <label>Zonas / Ciudades disponibles para envío:</label>
+                    <input type="text" id="shipping-zones-input" placeholder="Ej: Capital Federal, Córdoba, Rosario, o Solo CABA">
+                </div>
+                <div class="form-group">
+                    <label>Costo de Envío ($) - Colocá 0 para Envío Gratis:</label>
+                    <input type="number" id="shipping-cost-input" placeholder="0">
+                </div>
+                <button class="btn-add-cart" onclick="saveShippingSettings()">Guardar Envíos y WhatsApp</button>
+            </div>
+
+            <!-- Tab 5: Seguridad -->
             <div id="tab-security" class="tab-content">
                 <div class="form-group">
                     <label>Nueva Contraseña de Administración:</label>
@@ -752,6 +800,11 @@
         let appData = {
             adminPass: "1234",
             brand: { main: "LM", accent: "Sport" },
+            whatsappNumber: "5491100000000", // Número por defecto para notificaciones
+            shipping: {
+                zones: "Envíos a todo el país / Zonas seleccionadas",
+                cost: 0
+            },
             hero: {
                 badge: "",
                 title: "LM SPORT",
@@ -814,7 +867,11 @@
                 document.getElementById('inicio').style.backgroundImage = `url('${appData.hero.img}')`;
             }
 
-            // Sincronizar con los campos del panel
+            // Datos de envíos en checkout
+            document.getElementById('checkout-shipping-zones').innerText = appData.shipping.zones || "Consultar disponibilidades";
+            document.getElementById('checkout-shipping-cost').innerText = appData.shipping.cost > 0 ? `$${appData.shipping.cost.toLocaleString('es-AR')}` : 'Gratis';
+
+            // Sincronizar campos del panel
             document.getElementById('brand-input-main').value = appData.brand.main;
             document.getElementById('brand-input-accent').value = appData.brand.accent;
             document.getElementById('hero-badge-input').value = appData.hero.badge || '';
@@ -823,6 +880,9 @@
             document.getElementById('hero-btn-input').value = appData.hero.btnText || '';
             document.getElementById('catalog-title-input').value = appData.hero.catalogTitle || '';
             document.getElementById('catalog-subtitle-input').value = appData.hero.catalogSubtitle || '';
+            document.getElementById('admin-whatsapp-num').value = appData.whatsappNumber || '';
+            document.getElementById('shipping-zones-input').value = appData.shipping.zones || '';
+            document.getElementById('shipping-cost-input').value = appData.shipping.cost || 0;
 
             // Renderizar Lista de Productos
             const grid = document.getElementById('products-grid');
@@ -898,7 +958,7 @@
             document.getElementById(tabId).classList.add('active');
         }
 
-        /* GUARDAR AJUSTES DE TEXTO Y MARCA */
+        /* GUARDAR CONFIGURACIONES */
         function saveBrandSettings() {
             appData.brand.main = document.getElementById('brand-input-main').value;
             appData.brand.accent = document.getElementById('brand-input-accent').value;
@@ -927,6 +987,14 @@
                 saveState();
                 alert('¡Textos actualizados!');
             }
+        }
+
+        function saveShippingSettings() {
+            appData.whatsappNumber = document.getElementById('admin-whatsapp-num').value.replace(/[^0-9]/g, '');
+            appData.shipping.zones = document.getElementById('shipping-zones-input').value;
+            appData.shipping.cost = parseFloat(document.getElementById('shipping-cost-input').value) || 0;
+            saveState();
+            alert('¡Ajustes de WhatsApp y Envíos guardados correctamente!');
         }
 
         function saveNewPassword() {
@@ -1025,7 +1093,7 @@
             document.getElementById('btn-cancel-prod').style.display = "none";
         }
 
-        /* CARRITO DE COMPRAS */
+        /* CARRITO DE COMPRAS Y NOTIFICACIÓN POR WHATSAPP */
         function toggleCart() {
             const sidebar = document.getElementById('cart-sidebar');
             const overlay = document.getElementById('cart-overlay');
@@ -1049,19 +1117,23 @@
         function updateCartUI() {
             const container = document.getElementById('cart-items-container');
             const count = document.getElementById('cart-count');
+            const subtotalVal = document.getElementById('cart-subtotal-val');
+            const shippingVal = document.getElementById('cart-shipping-val');
             const totalVal = document.getElementById('cart-total-val');
 
             count.innerText = cart.length;
 
             if (cart.length === 0) {
                 container.innerHTML = `<p style="color: var(--text-muted); text-align: center; margin-top: 2rem;">El carrito está vacío</p>`;
+                subtotalVal.innerText = '$0';
+                shippingVal.innerText = '$0';
                 totalVal.innerText = '$0';
                 return;
             }
 
-            let total = 0;
+            let subtotal = 0;
             container.innerHTML = cart.map((item, index) => {
-                total += item.price;
+                subtotal += item.price;
                 return `
                     <div class="cart-item">
                         <div class="cart-item-details">
@@ -1074,7 +1146,12 @@
                 `;
             }).join('');
 
-            totalVal.innerText = `$${total.toLocaleString('es-AR')}`;
+            const shippingCost = appData.shipping.cost || 0;
+            const finalTotal = subtotal + shippingCost;
+
+            subtotalVal.innerText = `$${subtotal.toLocaleString('es-AR')}`;
+            shippingVal.innerText = shippingCost > 0 ? `$${shippingCost.toLocaleString('es-AR')}` : 'Gratis';
+            totalVal.innerText = `$${finalTotal.toLocaleString('es-AR')}`;
         }
 
         function removeFromCart(index) {
@@ -1082,12 +1159,13 @@
             updateCartUI();
         }
 
-        function processOrder() {
-            const name = document.getElementById('cust-name').value;
-            const address = document.getElementById('cust-address').value;
+        function processOrderWhatsApp() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
 
-            if (!name || !address) {
-                alert('Ingresá tu nombre y dirección.');
+            if (!name || !phone || !address) {
+                alert('Por favor completá tu nombre, teléfono y dirección para poder enviarte el pedido.');
                 return;
             }
 
@@ -1096,10 +1174,44 @@
                 return;
             }
 
-            alert(`¡Gracias por tu compra, ${name}! Registramos tu pedido para envío a: ${address}.`);
+            if (!appData.whatsappNumber) {
+                alert('El dueño de la tienda aún no configuró un número de WhatsApp para recibir pedidos.');
+                return;
+            }
+
+            // Subtotal y Total
+            let subtotal = 0;
+            let itemsText = "";
+
+            cart.forEach((item, idx) => {
+                subtotal += item.price;
+                itemsText += `${idx + 1}. *${item.name}* - Talle: ${item.talle} | Color: ${item.color} ($${item.price.toLocaleString('es-AR')})\n`;
+            });
+
+            const shippingCost = appData.shipping.cost || 0;
+            const grandTotal = subtotal + shippingCost;
+
+            // Construir mensaje directo de WhatsApp
+            let message = `🛒 *¡NUEVA COMPRA EN LA TIENDA!*\n\n`;
+            message += `👤 *Cliente:* ${name}\n`;
+            message += `📞 *Teléfono:* ${phone}\n`;
+            message += `📍 *Dirección/Zona:* ${address}\n\n`;
+            message += `🛍️ *PRODUCTOS:* \n${itemsText}\n`;
+            message += `💰 *Subtotal:* $${subtotal.toLocaleString('es-AR')}\n`;
+            message += `🚚 *Envío (${appData.shipping.zones}):* ${shippingCost > 0 ? '$' + shippingCost.toLocaleString('es-AR') : 'GRATIS'}\n`;
+            message += `💳 *TOTAL A PAGAR:* $${grandTotal.toLocaleString('es-AR')}\n\n`;
+            message += `Aguardando confirmación para coordinar el pago y envío.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${appData.whatsappNumber}?text=${encodedMessage}`;
+
+            // Vaciar carrito
             cart = [];
             updateCartUI();
             toggleCart();
+
+            // Abrir WhatsApp directo
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
