@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMSport | Indumentaria Deportiva High Performance</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* RESET & VARIABLES GLOBALES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #f4acb7;      
+            --primary-hover: #ffcad4;     
+            --dark-bg: #0d0d0d;           
+            --card-bg: #161616;           
+            --input-bg: #222222;          
+            --text-light: #ffffff;
+            --text-muted: #b0a8b0;
+            --font-family: 'Montserrat', sans-serif;
+            --transition: all 0.3s ease;
+            --danger-red: #ff4d4d;
+            --success-green: #2ecc71;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* HEADER & NAVEGACIÓN */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(244, 172, 183, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .logo span { color: var(--primary-pink); }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .navbar a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .navbar a:hover { color: var(--primary-pink); }
+
+        .cart-btn-nav {
+            background-color: var(--primary-pink);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 900;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .cart-btn-nav:hover {
+            background-color: var(--primary-hover);
+            transform: scale(1.05);
+        }
+
+        .admin-nav-btn {
+            background: transparent;
+            border: 1px solid var(--primary-pink);
+            color: var(--primary-pink);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .admin-nav-btn:hover {
+            background-color: var(--primary-pink);
+            color: #000;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 85vh;
+            background: url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1.5rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(13, 13, 13, 0.7) 0%, rgba(13, 13, 13, 0.95) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .badge {
+            background-color: var(--primary-pink);
+            color: #000;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-pink);
+            color: #000;
+            padding: 1rem 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(244, 172, 183, 0.3);
+        }
+
+        /* BENEFICIOS */
+        .features {
+            max-width: 1200px;
+            margin: -40px auto 4rem;
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(244, 172, 183, 0.1);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-pink);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* CATÁLOGO DE PRODUCTOS */
+        .products-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+
+        .section-title h2 span { color: var(--primary-pink); }
+
+        .section-title p { color: var(--text-muted); }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(244, 172, 183, 0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-pink);
+        }
+
+        .product-img {
+            position: relative;
+            height: 300px;
+            background-color: #222;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--primary-pink);
+            margin: 0.5rem 0 1rem;
+        }
+
+        .product-options {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option-row label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .select-input {
+            background-color: var(--input-bg);
+            color: var(--text-light);
+            border: 1px solid rgba(244, 172, 183, 0.2);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            outline: none;
+            font-family: var(--font-family);
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background-color: var(--primary-pink);
+            color: #000;
+            border: none;
+            padding: 0.8rem;
+            font-weight: 900;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: var(--transition);
+            margin-top: auto;
+        }
+
+        .btn-add-cart:hover { background-color: var(--primary-hover); }
+
+        /* CARRITO LATERAL */
+        .cart-overlay, .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1001;
+            display: none;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background-color: var(--card-bg);
+            z-index: 1002;
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.8);
+            border-left: 1px solid var(--primary-pink);
+        }
+
+        .cart-sidebar.open { right: 0; }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(244, 172, 183, 0.2);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--input-bg);
+            padding: 0.8rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-pink);
+        }
+
+        .cart-item-details h4 { font-size: 0.95rem; }
+
+        .cart-item-details p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .cart-checkout-form {
+            border-top: 1px solid rgba(244, 172, 183, 0.2);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .cart-checkout-form input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid rgba(244, 172, 183, 0.3);
+            color: #fff;
+            padding: 0.6rem;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: 900;
+            display: flex;
+            justify-content: space-between;
+            color: var(--primary-pink);
+        }
+
+        /* MODALES (LOGIN Y PANEL ADMIN) */
+        .admin-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--card-bg);
+            border: 2px solid var(--primary-pink);
+            border-radius: 8px;
+            padding: 2rem;
+            z-index: 2000;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+        }
+
+        .admin-modal h3 {
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group { margin-bottom: 1rem; }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.7rem;
+            background: var(--input-bg);
+            border: 1px solid rgba(254, 172, 183, 0.2);
+            color: #fff;
+            border-radius: 4px;
+            font-family: var(--font-family);
+        }
+
+        .admin-controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-cancel {
+            background: #444;
+            color: #fff;
+            border: none;
+            padding: 0.8rem;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-danger {
+            background: var(--danger-red);
+            color: #fff;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-edit {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .admin-product-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--input-bg);
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .admin-product-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .admin-badge-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--primary-pink);
+            color: var(--primary-pink);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #050505;
+            padding: 3rem 1.5rem 2rem;
+            border-top: 1px solid rgba(244, 172, 183, 0.1);
+            text-align: center;
+        }
+
+        .footer p { color: var(--text-muted); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-container { flex-direction: column; gap: 1rem; }
+            .admin-controls-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado / Navegación -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">LM<span>SPORT</span></a>
+            <nav class="navbar">
+                <a href="#inicio">Inicio</a>
+                <a href="#destacados">Productos</a>
+                <button class="admin-nav-btn" onclick="openAdminModal()">🔒 Panel Privado</button>
+                <button class="cart-btn-nav" onclick="toggleCart()">
+                    🛒 Carrito (<span id="cart-count">0</span>)
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section id="inicio" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="badge">NUEVO INGRESO 2026</span>
+            <h1 id="hero-title">CALCE PERFECTO Y MÁXIMO CONFORT</h1>
+            <p>Indumentaria deportiva diseñada para brindarte absoluta libertad de movimiento y el mejor estilo.</p>
+            <a href="#destacados" class="btn-primary">Ver Productos</a>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Calce Anatómico</h3>
+            <p>Confeccionado para adaptarse y realzar tu figura con total comodidad.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌿</div>
+            <h3>Telas Dry-Fit</h3>
+            <p>Texturas suaves, respirables y de secado rápido para mayor rendimiento.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💫</div>
+            <h3>Alta Elasticidad</h3>
+            <p>Flexibilidad total en cada movimiento sin perder la firmeza de la prenda.</p>
+        </div>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <section id="destacados" class="products-section">
+        <div class="section-title">
+            <h2>INDUMENTARIA <span>DESTACADA</span></h2>
+            <p>Elegí tu talle y color preferido para agregarlo a tu carrito de compras.</p>
+        </div>
+
+        <div class="products-grid" id="products-container">
+            <!-- Productos renderizados dinámicamente -->
+        </div>
+    </section>
+
+    <!-- Carrito Desplegable -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Tu Carrito de Compras</h3>
+            <button class="close-btn" onclick="toggleCart()">✕</button>
+        </div>
+
+        <div class="cart-items" id="cart-items-container">
+            <p style="color: var(--text-muted); text-align: center; margin-top: 2rem;">El carrito está vacío</p>
+        </div>
+
+        <div class="cart-checkout-form">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-val">$0</span>
+            </div>
+            <input type="text" id="cust-name" placeholder="Nombre Completo" required>
+            <input type="text" id="cust-address" placeholder="Dirección de Envío / Localidad" required>
+            <button class="btn-add-cart" onclick="processOrder()">Confirmar y Enviar Pedido</button>
+        </div>
+    </div>
+
+    <!-- Overlay Global para Modales -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <!-- MODAL 1: AUTENTICACIÓN (LOGIN ADMIN) -->
+    <div class="admin-modal" id="login-modal">
+        <h3>🔒 Acceso Exclusivo Administrador</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 1.5rem;">Ingresá la contraseña privada para modificar tus productos e imágenes.</p>
+        
+        <div class="form-group">
+            <label for="admin-pass">Contraseña Privada:</label>
+            <input type="password" id="admin-pass" placeholder="Ingresá tu contraseña (por defecto: 1234)">
+        </div>
+
+        <div class="admin-actions">
+            <button class="btn-add-cart" onclick="verifyPassword()">Ingresar al Panel</button>
+            <button class="btn-cancel" onclick="closeModals()">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- MODAL 2: PANEL DE ADMINISTRACIÓN DE PRODUCTOS -->
+    <div class="admin-modal" id="dashboard-modal">
+        <h3>⚙️ Panel de Gestión de Productos <button class="close-btn" onclick="closeModals()">✕</button></h3>
+        
+        <!-- Formulario Cargar/Editar Producto -->
+        <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; border: 1px solid rgba(244,172,183,0.2);">
+            <h4 id="form-title" style="color:var(--primary-pink); margin-bottom: 0.8rem;">Añadir Nuevo Producto</h4>
+            
+            <input type="hidden" id="edit-prod-id" value="">
+
+            <div class="admin-controls-grid">
+                <div class="form-group">
+                    <label for="prod-name">Nombre del Producto:</label>
+                    <input type="text" id="prod-name" placeholder="Ej. Remera Dry-Fit Pro">
+                </div>
+                <div class="form-group">
+                    <label for="prod-price">Precio ($):</label>
+                    <input type="number" id="prod-price" placeholder="Ej. 18500">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="prod-img">URL de la Imagen (Subí tu imagen a ImgBB/Unsplash o pega el link):</label>
+                <input type="text" id="prod-img" placeholder="https://ejemplo.com/imagen.jpg">
+            </div>
+
+            <div class="admin-controls-grid">
+                <div class="form-group">
+                    <label for="prod-sizes">Talles Disponibles (Separados por coma):</label>
+                    <input type="text" id="prod-sizes" value="S, M, L, XL">
+                </div>
+                <div class="form-group">
+                    <label for="prod-colors">Colores Disponibles (Separados por coma):</label>
+                    <input type="text" id="prod-colors" value="Negro, Rosa Pastel, Gris">
+                </div>
+            </div>
+
+            <div class="admin-actions">
+                <button class="btn-add-cart" id="btn-save-prod" onclick="saveProduct()">Guardar Producto</button>
+                <button class="btn-cancel" id="btn-cancel-edit" onclick="resetForm()" style="display:none;">Cancelar Edición</button>
+            </div>
+        </div>
+
+        <!-- Lista de Productos Existentes -->
+        <h4 style="margin-bottom:0.8rem;">Inventario Actual:</h4>
+        <div id="admin-products-list">
+            <!-- Lista renderizada por JS -->
+        </div>
+
+        <!-- Cambiar Contraseña Privada -->
+        <div style="margin-top: 1.5rem; border-top: 1px solid rgba(244,172,183,0.2); padding-top: 1rem;">
+            <h4 style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 0.5rem;">Seguridad del Panel:</h4>
+            <div class="admin-controls-grid">
+                <div class="form-group">
+                    <input type="password" id="new-password" placeholder="Nueva Contraseña">
+                </div>
+                <button class="btn-cancel" style="background:var(--primary-pink); color:#000;" onclick="changePassword()">Actualizar Clave</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 LMSport - Indumentaria Deportiva. Todos los derechos reservados.</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top:0.5rem;">Panel Administrador Privado Habilitado</p>
+    </footer>
+
+    <!-- Lógica JavaScript -->
+    <script>
+        // DATOS INICIALES POR DEFECTO
+        const defaultProducts = [
+            {
+                id: 1,
+                name: "Remera Dry-Fit Training",
+                price: 18500,
+                img: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=800&auto=format&fit=crop",
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Negro", "Rosa Pastel", "Gris Melange"]
+            },
+            {
+                id: 2,
+                name: "Calza Seamless High Waist",
+                price: 24000,
+                img: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?q=80&w=800&auto=format&fit=crop",
+                sizes: ["XS", "S", "M", "L"],
+                colors: ["Negro", "Rosa Pastel"]
+            },
+            {
+                id: 3,
+                name: "Campera Windbreaker Sport",
+                price: 39900,
+                img: "https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=800&auto=format&fit=crop",
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Negro", "Rosa Pastel"]
+            },
+            {
+                id: 4,
+                name: "Top Deportivo Impact",
+                price: 15200,
+                img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop",
+                sizes: ["S", "M", "L"],
+                colors: ["Negro", "Rosa Pastel"]
+            }
+        ];
+
+        // INICIALIZACIÓN DE LOCALSTORAGE
+        let products = JSON.parse(localStorage.getItem('lmsport_products')) || defaultProducts;
+        let adminPassword = localStorage.getItem('lmsport_admin_pass') || '1234';
+        let cart = [];
+
+        // RENDERIZADO DE PRODUCTOS EN EL SITIO WEB
+        function renderProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+
+            products.forEach(p => {
+                const sizesHtml = p.sizes.map(s => `<option value="${s.trim()}">${s.trim()}</option>`).join('');
+                const colorsHtml = p.colors.map(c => `<option value="${c.trim()}">${c.trim()}</option>`).join('');
+
+                const productCard = `
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x400?text=Sin+Imagen'">
+                        </div>
+                        <div class="product-info">
+                            <h3>${p.name}</h3>
+                            <p class="price">$${Number(p.price).toLocaleString('es-AR')}</p>
+
+                            <div class="product-options">
+                                <div class="option-row">
+                                    <label>Talle:</label>
+                                    <select id="talle-${p.id}" class="select-input">${sizesHtml}</select>
+                                </div>
+                                <div class="option-row">
+                                    <label>Color:</label>
+                                    <select id="color-${p.id}" class="select-input">${colorsHtml}</select>
+                                </div>
+                            </div>
+
+                            <button class="btn-add-cart" onclick="addToCart(${p.id})">
+                                Agregar al Carrito
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += productCard;
+            });
+
+            saveProductsToStorage();
+        }
+
+        function saveProductsToStorage() {
+            localStorage.setItem('lmsport_products', JSON.stringify(products));
+        }
+
+        // LÓGICA DEL CARRITO
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            sidebar.classList.toggle('open');
+            overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+        }
+
+        function addToCart(productId) {
+            const prod = products.find(p => p.id === productId);
+            if (!prod) return;
+
+            const talle = document.getElementById(`talle-${productId}`).value;
+            const color = document.getElementById(`color-${productId}`).value;
+
+            cart.push({ title: prod.name, price: prod.price, talle, color });
+            updateCartUI();
+            toggleCart();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const count = document.getElementById('cart-count');
+            const totalVal = document.getElementById('cart-total-val');
+
+            count.innerText = cart.length;
+
+            if (cart.length === 0) {
+                container.innerHTML = `<p style="color: var(--text-muted); text-align: center; margin-top: 2rem;">El carrito está vacío</p>`;
+                totalVal.innerText = '$0';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <h4>${item.title}</h4>
+                            <p>Talle: ${item.talle} | Color: ${item.color}</p>
+                            <p style="color:var(--primary-pink); font-weight:bold;">$${item.price.toLocaleString('es-AR')}</p>
+                        </div>
+                        <button style="background:none; border:none; color:#ff4d4d; font-size:1.1rem; cursor:pointer;" onclick="removeFromCart(${index})">✕</button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            totalVal.innerText = `$${total.toLocaleString('es-AR')}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function processOrder() {
+            const name = document.getElementById('cust-name').value;
+            const address = document.getElementById('cust-address').value;
+
+            if (!name || !address) {
+                alert('Por favor, completa tu nombre y la dirección de envío.');
+                return;
+            }
+
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío.');
+                return;
+            }
+
+            alert(`¡Gracias por tu compra, ${name}! Tu pedido ha sido registrado para envío a: ${address}.`);
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // LÓGICA DE ADMINISTRACIÓN PRIVADA
+        function openAdminModal() {
+            document.getElementById('modal-overlay').style.display = 'block';
+            document.getElementById('login-modal').style.display = 'block';
+        }
+
+        function closeModals() {
+            document.getElementById('modal-overlay').style.display = 'none';
+            document.getElementById('login-modal').style.display = 'none';
+            document.getElementById('dashboard-modal').style.display = 'none';
+            resetForm();
+        }
+
+        function verifyPassword() {
+            const passInput = document.getElementById('admin-pass').value;
+            if (passInput === adminPassword) {
+                document.getElementById('login-modal').style.display = 'none';
+                document.getElementById('dashboard-modal').style.display = 'block';
+                document.getElementById('admin-pass').value = '';
+                renderAdminProductsList();
+            } else {
+                alert('Contraseña incorrecta. Solo el dueño de la tienda tiene acceso.');
+            }
+        }
+
+        function renderAdminProductsList() {
+            const listContainer = document.getElementById('admin-products-list');
+            listContainer.innerHTML = '';
+
+            products.forEach(p => {
+                listContainer.innerHTML += `
+                    <div class="admin-product-item">
+                        <div style="display:flex; align-items:center; gap:0.8rem;">
+                            <img src="${p.img}" alt="${p.name}">
+                            <div>
+                                <h5 style="color:#fff;">${p.name}</h5>
+                                <span style="color:var(--primary-pink); font-size:0.85rem; font-weight:bold;">$${Number(p.price).toLocaleString('es-AR')}</span>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn-edit" onclick="editProduct(${p.id})">✎ Editar</button>
+                            <button class="btn-danger" onclick="deleteProduct(${p.id})">🗑️ Borrar</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function saveProduct() {
+            const id = document.getElementById('edit-prod-id').value;
+            const name = document.getElementById('prod-name').value;
+            const price = parseFloat(document.getElementById('prod-price').value);
+            const img = document.getElementById('prod-img').value;
+            const sizesRaw = document.getElementById('prod-sizes').value;
+            const colorsRaw = document.getElementById('prod-colors').value;
+
+            if (!name || isNaN(price) || !img) {
+                alert('Por favor completa el nombre, el precio y el enlace de la imagen.');
+                return;
+            }
+
+            const sizes = sizesRaw.split(',').map(s => s.trim());
+            const colors = colorsRaw.split(',').map(c => c.trim());
+
+            if (id) {
+                // Modo Edición
+                const index = products.findIndex(p => p.id === parseInt(id));
+                if (index !== -1) {
+                    products[index] = { id: parseInt(id), name, price, img, sizes, colors };
+                }
+            } else {
+                // Modo Creación
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({ id: newId, name, price, img, sizes, colors });
+            }
+
+            renderProducts();
+            renderAdminProductsList();
+            resetForm();
+            alert('¡Producto guardado exitosamente!');
+        }
+
+        function editProduct(id) {
+            const prod = products.find(p => p.id === id);
+            if (!prod) return;
+
+            document.getElementById('edit-prod-id').value = prod.id;
+            document.getElementById('prod-name').value = prod.name;
+            document.getElementById('prod-price').value = prod.price;
+            document.getElementById('prod-img').value = prod.img;
+            document.getElementById('prod-sizes').value = prod.sizes.join(', ');
+            document.getElementById('prod-colors').value = prod.colors.join(', ');
+
+            document.getElementById('form-title').innerText = "Editar Producto Existente";
+            document.getElementById('btn-save-prod').innerText = "Actualizar Cambios";
+            document.getElementById('btn-cancel-edit').style.display = "block";
+        }
+
+        function deleteProduct(id) {
+            if (confirm('¿Estás seguro de que querés eliminar este producto? Esta acción no se puede deshacer.')) {
+                products = products.filter(p => p.id !== id);
+                renderProducts();
+                renderAdminProductsList();
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('edit-prod-id').value = '';
+            document.getElementById('prod-name').value = '';
+            document.getElementById('prod-price').value = '';
+            document.getElementById('prod-img').value = '';
+            document.getElementById('prod-sizes').value = 'S, M, L, XL';
+            document.getElementById('prod-colors').value = 'Negro, Rosa Pastel, Gris';
+
+            document.getElementById('form-title').innerText = "Añadir Nuevo Producto";
+            document.getElementById('btn-save-prod').innerText = "Guardar Producto";
+            document.getElementById('btn-cancel-edit').style.display = "none";
+        }
+
+        function changePassword() {
+            const newPass = document.getElementById('new-password').value;
+            if (newPass.trim().length < 4) {
+                alert('La contraseña debe tener al menos 4 caracteres.');
+                return;
+            }
+            adminPassword = newPass;
+            localStorage.setItem('lmsport_admin_pass', adminPassword);
+            document.getElementById('new-password').value = '';
+            alert('¡Contraseña actualizada con éxito!');
+        }
+
+        // Inicializar renderizado
+        renderProducts();
+    </script>
+</body>
+</html>
+```eod
